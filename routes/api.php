@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\CompanyCreateController;
+use App\Http\Controllers\InvoicePaymentStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::namespace('billie')->group(function () {
-    Route::Post('/company/create', 'HomepageController@index');
-    Route::Post('/invoice/create', 'HomepageController@randomoffers');
-    Route::Post('/invoice/status', 'HomepageController@acceptoffer');
-});
+Route::Post('/company/create', CompanyCreateController::class);
+Route::Post('/invoice/create', InvoiceController::class);
+Route::Post('/payment/status', InvoicePaymentStatusController::class);
